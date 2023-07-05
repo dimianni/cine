@@ -1,11 +1,9 @@
 import Head from 'next/head'
-import clientPromise from '../lib/mongodb'
 import Link from 'next/link'
-import { useSession, signIn, signOut } from "next-auth/react"
+import clientPromise from '../lib/mongodb'
+import { TopMovies, Hero } from '../components'
 
 export default function Home({ isConnected, movies }) {
-
-  const { data: session } = useSession()
 
   return (
     <div className="container">
@@ -15,37 +13,10 @@ export default function Home({ isConnected, movies }) {
       </Head>
 
       <main>
+        <Hero />
+        <TopMovies movies={movies} />
 
-        <section>
-          {session ? (
-            <div>
-              Signed in as {session.user.email} <br />
-              <button onClick={() => signOut()}>Sign out</button>
-            </div>
-          ) : (
-            <div>
-              Not signed in <br />
-              <button onClick={() => signIn()}>Sign in</button>
-            </div>
-          )}
-        </section>
-
-        <section>
-          <ul>
-            {movies?.map(movie => {
-              return (
-                <li>
-                  <p>{movie.title}</p>
-                </li>
-              )
-            })}
-          </ul>
-        </section>
-
-
-
-
-        <Link href={`/movie/573a1390f29313caabcd42e8`}>Go to movie</Link>
+        {/* <Link href={`/movie/573a1390f29313caabcd42e8`}>Go to movie</Link> */}
 
       </main>
     </div>
@@ -64,7 +35,15 @@ export const getStaticProps = async () => {
       .limit(10)
       .toArray();
 
-    // ThaHeck?? --> JSON.parse(JSON.stringify())
+
+    // NOTE: "movies" object cannot be used yet since it has some fileds that are object type
+    // ex.: _id field is an object: new ObjectId("573a1395f29313caabce1f51")
+    // Need to convert them into strings
+
+    // JSON.parse(JSON.stringify()) can be used to deep clone and stringify the movies array.
+
+    // JSON.parse(): This function does the opposite of JSON.stringify(). 
+    // It takes a JSON string as input and converts it back into the corresponding JavaScript object 
     let topMovies = JSON.parse(JSON.stringify(movies));
 
     return {
