@@ -1,14 +1,19 @@
+import Link from "next/link";
+import MovieCard from "../MovieCard/MovieCard";
+
 export default function TopMovies({movies}) {
 
-    console.log(movies);
+    // console.log(movies);
 
     return (
         <section>
-            <ul>
+            <ul className="flex flex-wrap justify-between items-center">
                 {movies?.map(movie => {
                     return (
                         <li key={movie._id}>
-                            <p>{movie.title}</p>
+                            <Link href={`/movie/${movie._id}`}>
+                                <MovieCard movie={movie} />
+                            </Link>
                         </li>
                     )
                 })}
