@@ -14,13 +14,9 @@ export default function Movie({ movie }) {
 }
 
 export const getServerSideProps = async (context) => {
-
-    // let router = useRouter()
-    // let { id } = router.query;
-
-
     try {
 
+        // getServerSideProps can use "context" instead of "router"
         let { id } = context.query;
 
         const client = await clientPromise;

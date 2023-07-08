@@ -17,6 +17,28 @@ export const authOptions = {
             clientSecret: process.env.GOOGLE_CLIENT_SECRET
         })
     ],
+    session: {
+        strategy: 'jwt',
+    },
+    callbacks: {
+        async jwt({ token, account, profile }) {
+            if (account) {
+                token.accessToken = account.access_token
+                if (profile && profile.id) {
+                    token.id = profile.id;
+                }
+            }
+            return token
+        },
+        async session({ session, token }) {
+            console.log(token);
+            // session.accessToken = token.accessToken
+            if (session?.user && token?.sub) {
+                session.user.id = token.sub;
+            }
+            return session;
+        }
+    }
 }
 
 export default NextAuth(authOptions)

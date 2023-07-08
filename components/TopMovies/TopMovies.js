@@ -11,9 +11,7 @@ export default function TopMovies({movies}) {
                 {movies?.map(movie => {
                     return (
                         <li key={movie._id}>
-                            <Link href={`/movie/${movie._id}`}>
-                                <MovieCard movie={movie} />
-                            </Link>
+                            <MovieCard movie={movie} />
                         </li>
                     )
                 })}
