@@ -4,17 +4,15 @@ import { useState, useEffect } from "react";
 import verifyImage from "@/utils/verifyImage";
 import LikeButton from "../LikeButton/LikeButton";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
-
+import useUserInfo from "@/hooks/useUserInfo";
 
 export default function MovieCard({ movie }) {
 
     const [poster, setPoster] = useState(null)
-
-    const { data: session } = useSession()
+    const { userInfo } = useUserInfo()
 
     useEffect(() => {
-        // Verifying if the poster exisits
+        // Verifying if the poster exists
         verifyImage(movie.poster)
             .then(isValidImg => {
                 if (isValidImg) {
@@ -43,10 +41,8 @@ export default function MovieCard({ movie }) {
                     </figure>
                 </Link>
 
-                {session && <LikeButton id={movie._id} />}
+                {userInfo && <LikeButton id={movie._id} liked={userInfo.likedMovies.includes(movie._id)} />}
             </div>
-
-
         </article>
     )
 }

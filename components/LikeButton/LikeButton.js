@@ -3,22 +3,19 @@ import { useState } from "react";
 
 export default function LikeButton({
     id,
-    liked: likedDefault = false,
+    liked:likedDefault = false,
 }) {
 
     const [liked, setLiked] = useState(likedDefault);
 
+    // console.log(liked);
+
     async function toggleLike() {
         const response = await axios.post('/api/like', {id})
-        console.log(response);
         // Updating the heart
         if(response.data){
-            console.log("Modified");
-            console.log(response.data.like);
             setLiked(true)
         } else {
-            console.log("Modified v2");
-
             setLiked(false)
         }
     }
