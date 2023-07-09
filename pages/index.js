@@ -15,9 +15,6 @@ export default function Home({ isConnected, movies }) {
       <main>
         <Hero />
         <TopMovies movies={movies} />
-
-        {/* <Link href={`/movie/573a1390f29313caabcd42e8`}>Go to movie</Link> */}
-
       </main>
     </div>
   )

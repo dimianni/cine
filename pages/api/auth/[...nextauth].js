@@ -4,7 +4,6 @@ import GoogleProvider from "next-auth/providers/google"
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
 import clientPromise from "../../../lib/mongodb"
 
-
 export const authOptions = {
     adapter: MongoDBAdapter(clientPromise),
     providers: [
@@ -31,8 +30,6 @@ export const authOptions = {
             return token
         },
         async session({ session, token }) {
-            // console.log(token);
-            // session.accessToken = token.accessToken
             if (session?.user && token?.sub) {
                 session.user.id = token.sub;
             }

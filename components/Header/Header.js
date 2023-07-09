@@ -49,7 +49,6 @@ export default function Header(){
                             {/* <button onClick={() => signOut()}>Sign out</button> */}
                         </p>
                     </Link>
-
                 ) : (
                     <p>
                         <button onClick={() => signIn()}>Sign in</button>

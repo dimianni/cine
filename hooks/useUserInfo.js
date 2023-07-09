@@ -1,7 +1,6 @@
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 
-
 export default function useUserInfo() {
 
     const { data: session, status: sessionStatus } = useSession();

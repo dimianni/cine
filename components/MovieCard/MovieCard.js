@@ -25,9 +25,7 @@ export default function MovieCard({ movie }) {
 
     return (
         <article>
-
             <h1>{movie.title}</h1>
-
             <div className="relative">
                 <Link href={`/movie/${movie._id}`}>
                     <figure>

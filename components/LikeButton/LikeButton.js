@@ -8,8 +8,6 @@ export default function LikeButton({
 
     const [liked, setLiked] = useState(likedDefault);
 
-    // console.log(liked);
-
     async function toggleLike() {
         const response = await axios.post('/api/like', {id})
         // Updating the heart

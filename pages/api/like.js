@@ -41,13 +41,6 @@ export default async function handle(req, res) {
             console.error('Error updating user (delete):', error);
         }
 
-        // try {
-        //     const updatedUser = await User.findByIdAndUpdate(userId, { $pull: { likedMovies: movieId } });
-        //     console.log('User updated (delete):', updatedUser);
-        // } catch (error) {
-        //     console.error('Error updating user (delete):', error);
-        // }
-
         res.json(null)
     } 
     // If not --> create new Like instance. 
@@ -61,13 +54,6 @@ export default async function handle(req, res) {
         } catch (error) {
             console.error('Error updating user (add):', error);
         }
-
-        // try {
-        //     const updatedUser = await User.findByIdAndUpdate(userId, { $push: { likedMovies: movieId } });
-        //     console.log('User updated (add):', updatedUser);
-        // } catch (error) {
-        //     console.error('Error updating user (add):', error);
-        // }
 
         res.json(like)
     }
