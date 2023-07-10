@@ -44,10 +44,10 @@ export default function Header(){
                 </Link>
                 {userInfo ? (
                     <Link href="profile">
-                        <p className="">
-                            {getFirstName(userInfo.name)}
-                            {/* <button onClick={() => signOut()}>Sign out</button> */}
-                        </p>
+                        <div className="flex justify-center items-center">
+                            <p className="mr-2">{getFirstName(userInfo.name)}</p>
+                            <button className="underline" onClick={() => signOut()}>Sign out</button>
+                        </div>
                     </Link>
                 ) : (
                     <p>
