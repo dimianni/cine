@@ -24,23 +24,26 @@ export default function MovieCard({ movie }) {
     }, [])
 
     return (
-        <article>
-            <h1>{movie.title}</h1>
-            <div className="relative">
-                <Link href={`/movie/${movie._id}`}>
-                    <figure>
-                        <figcaption className="hidden">{movie.title}</figcaption>
-                        {poster ? (
-                            <Image width={200} height={300} src={poster} alt={movie.title} />
-                        ) : (
-                            <p>Loading...</p>
-                        )
-                        }
-                    </figure>
-                </Link>
+        <article className="w-full">
+            <button className="w-full">
+                <div className="poster-wrapper relative w-full rounded-2xl p-1 border-4 border-hsla-0-0-100-0 hover:border-grey-300">
+                    <Link href={`/movie/${movie._id}`}>
+                        <figure className="poster-img w-full h-[350px] xl:h-[450px] rounded-xl overflow-hidden relative">
+                            <div className="gradient absolute top-0 left-0 w-full h-full"></div>
+                            <figcaption className="hidden">{movie.title}</figcaption>
+                            {poster ? (
+                                <Image width={320} height={450} style={{ width: "100%", height: "100%", objectFit: "cover" }} src={poster} alt={movie.title} />
+                            ) : (
+                                <p>Loading...</p>
+                            )
+                            }
+                        </figure>
+                    </Link>
+                    <p className="absolute bottom-4 left-4 text-sm xl:text-base font-medium uppercase text-white opacity-80">{movie.title}</p>
 
-                {userInfo && <LikeButton id={movie._id} liked={userInfo.likedMovies.includes(movie._id)} />}
-            </div>
+                    {userInfo && <LikeButton id={movie._id} liked={userInfo.likedMovies.includes(movie._id)} />}
+                </div>
+            </button>
         </article>
     )
 }

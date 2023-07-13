@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.gradient {
+    /* background: linear-gradient(156.82deg, rgba(0, 0, 0, 0.6) 4.58%, transparent 69.61%),
+        linear-gradient(24.5deg, rgba(0, 0, 0, 0.2) 4.71%, transparent 71.49%); */
+background: rgb(0,0,0);
+background: linear-gradient(0deg, rgba(0,0,0,0.8645658947172619) 0%, rgba(0,0,0,0) 35%, rgba(0,0,0,0.8253502084427521) 100%);
+transition: all;
+transition-delay: 150ms;
+transition-timing-function: ease-in-out;
+}
+
+.poster-wrapper:hover .gradient {
+background: rgb(0,0,0);
+background: linear-gradient(0deg, rgba(0,0,0,0.8645658947172619) 0%, rgba(0,0,0,0.6460784997592788) 35%, rgba(0,0,0,0.8253502084427521) 100%);
+transition: all;
+transition-delay: 150ms;
+transition-timing-function: ease-in-out;
+}

@@ -11,17 +11,35 @@ module.exports = {
   theme: {
     container: {
       center: true,
+      screens: {
+        // if the screen is smaller than 768 --> container is 100%
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
+      },
+      padding: {
+        DEFAULT: '1rem',
+        sm: '0',
+      },
     },
     extend: {
       colors: {
         green: '#1ce783',
         grey: {
+          300: '#797d84',
           400: '#323843',
           500: '#272c34',
           900: '#0b0c0f'
         },
-        white: '#f6f7f8'
+        white: '#f6f7f8',
+        hsla: {
+          '0-0-100-0': 'hsla(0, 0%, 100%, 0)',
+        },
       },
+      maxWidth: {
+        '4/5': '80%',
+      }
     },
   },
   plugins: [],
