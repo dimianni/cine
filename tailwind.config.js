@@ -36,9 +36,15 @@ module.exports = {
         hsla: {
           '0-0-100-0': 'hsla(0, 0%, 100%, 0)',
         },
+        rgba: {
+          'neutral-muted': 'rgba(110,118,129,0.4)'
+        }
       },
       maxWidth: {
         '4/5': '80%',
+      },
+      boxShadow: {
+        'modal': '0 0 0 1px #30363d, 0 16px 32px rgba(1,4,9,0.85)',
       }
     },
   },
