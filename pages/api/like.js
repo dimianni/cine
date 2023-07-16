@@ -37,11 +37,13 @@ export default async function handle(req, res) {
             }
             const updatedUser = await user.save();
             // console.log('User updated (delete):', updatedUser);
+            res.json({ result: null, updatedUser })
+
         } catch (error) {
             console.error('Error updating user (delete):', error);
+            res.json({error})
         }
 
-        res.json(null)
     } 
     // If not --> create new Like instance. 
     else {
@@ -51,10 +53,12 @@ export default async function handle(req, res) {
             user.likedMovies.push(movieId);
             const updatedUser = await user.save();
             // console.log('User updated (add):', updatedUser);
+            res.json({ result: like, updatedUser })
+
         } catch (error) {
             console.error('Error updating user (add):', error);
+            res.json({ error })
         }
 
-        res.json(like)
     }
 }

@@ -21,7 +21,7 @@ export default function Modal({ isOpen, setIsOpen, onClose }) {
                     <div className="wrapper p-2 flex justify-between items-center">
                         <div className="user flex justify-start items-center pt-2 pb-2 pl-2">
                             <div className="avatar rounded-full overflow-hidden w-8 h-8">
-                                <Image width="32" height="32" src={userInfo?.image} style={{"width": "100%", "height": "100%", "objectFit": "cover"}} />
+                                <Image width="32" height="32" src={userInfo?.image} style={{"width": "100%", "height": "100%", "objectFit": "cover"}} alt="avatar" />
                             </div>
                             <div className="user text-sm font-medium text-white ml-2 !mr-auto">
                                 <p>

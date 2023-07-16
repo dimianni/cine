@@ -1,6 +1,8 @@
+import { updateUser } from "@/redux/actions/authActions";
 import axios from "axios";
 import { useState } from "react";
 import { Heart } from "react-feather";
+import { useDispatch } from "react-redux";
 
 export default function LikeButton({
     id,
@@ -8,14 +10,19 @@ export default function LikeButton({
 }) {
 
     const [liked, setLiked] = useState(likedDefault);
+    const dispatch = useDispatch();
 
     async function toggleLike() {
         const response = await axios.post('/api/like', {id})
         // Updating the heart
-        if(response.data){
+        // console.log(response.data.updatedUser);
+        if(response.data.result){
             setLiked(true)
         } else {
             setLiked(false)
+        }
+        if (response.data.updatedUser) {
+            dispatch(updateUser(response.data.updatedUser))
         }
     }
 
