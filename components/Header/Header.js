@@ -3,34 +3,17 @@ import { signIn } from "next-auth/react"
 import Image from "next/image";
 import Link from "next/link";
 import Modal from "../Modal/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Heart } from "react-feather";
 
 
 export default function Header() {
 
     const { userInfo, status } = useUserInfo();
-    // console.log(userInfo);
+    console.log(userInfo?.likedMovies);
 
-
-    // const { data: session, status } = useSession()
-    // const [userInfo, setUserInfo] = useState(null)
-
-    // function getUserInfo(){
-    //     if (status === "authenticated"){
-    //         fetch("/api/users?id=" + session.user.id)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log(data);
-    //             setUserInfo(data.user)
-    //         })
-    //     }
-    // }
-
-    // useEffect(() => {
-    //   getUserInfo()
-    // }, [status])
-
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
+    const [countLikedMovies, setCountLikedMovies] = useState(null);
 
     const handleModalOpen = () => {
         setIsOpen(true);
@@ -40,6 +23,10 @@ export default function Header() {
         setIsOpen(false);
     };
 
+    useEffect(() => {
+        setCountLikedMovies(userInfo?.likedMovies.length)
+    }, [userInfo])
+
     return (
         <header className="header w-full py-3 h-16">
             <div className="container h-full flex justify-between items-center">
@@ -47,8 +34,16 @@ export default function Header() {
                     <h1 className="text-green text-2xl font-bold w-52 tracking-wider">cine</h1>
                 </Link>
                 {userInfo ? (
-                    <div onClick={() => handleModalOpen()} className="wrapper rounded-full overflow-hidden w-8 h-8">
-                        <Image width="32" height="32" src={userInfo.image} style={{ "width": "100%", "height": "auto", "objectFit": "cover" }} />
+                    <div className="flex justify-center items-center">
+                        <div className="w-7 h-7 relative flex justify-center items-end">
+                            <div className="absolute top-0 right-0 translate-x-1/3 -translate-y-1/3 w-4 h-4 rounded-full bg-green flex justify-center items-center">
+                                <span className="text-xs">{countLikedMovies}</span>
+                            </div>
+                            <Heart className="w-6 h-6" />
+                        </div>
+                        <div onClick={() => handleModalOpen()} className="wrapper rounded-full overflow-hidden w-8 h-8 ml-4">
+                            <Image width="32" height="32" src={userInfo.image} style={{ "width": "100%", "height": "auto", "objectFit": "cover" }} />
+                        </div>
                     </div>
                 ) : (
                     <p>

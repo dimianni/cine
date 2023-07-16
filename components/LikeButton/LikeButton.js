@@ -23,8 +23,5 @@ export default function LikeButton({
         <button className={(liked ? 'fill-green ' : '') + "flex items-center absolute right-3 top-4"} onClick={toggleLike}>
             <Heart color="currentColor" fill="inherit" />
         </button>
-
-
-
     )
 }
