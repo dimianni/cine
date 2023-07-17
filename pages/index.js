@@ -2,11 +2,25 @@ import Head from 'next/head'
 import Link from 'next/link'
 import clientPromise from '../lib/mongodb'
 import { TopMovies, Hero } from '../components'
+import { useEffect } from 'react'
 
 export default function Home({ isConnected, movies }) {
 
+  async function getGenres() {
+    const response = await fetch('api/getGenres')
+    const { genres } = await response.json()
+    console.log(genres);
+  }
+
+  useEffect(() => {
+
+    getGenres()
+
+  }, [])
+
+
   return (
-    <div className="container">
+    <>
       <Head>
         <title>Cine</title>
         <link rel="icon" href="/favicon.ico" />
@@ -16,7 +30,7 @@ export default function Home({ isConnected, movies }) {
         <Hero />
         <TopMovies movies={movies} />
       </main>
-    </div>
+    </>
   )
 }
 
