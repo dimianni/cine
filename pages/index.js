@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import clientPromise from '../lib/mongodb'
-import { TopMovies, Hero } from '../components'
+import { TopMovies, Hero } from '@/components'
 
 export default function Home({ isConnected, movies }) {
   return (
