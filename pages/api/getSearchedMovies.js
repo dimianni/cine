@@ -5,33 +5,41 @@ export default async function handler(req, res) {
     const client = await clientPromise;
     const db = client.db("sample_mflix");
 
-    const { selectedGenre, selectedYear, inputTitle } = req.body;
+    const { genre, year, title, page } = req.body;
 
-    // console.log(selectedGenre, selectedYear, inputTitle);
+    // Calculate the number of items to skip based on the page number
+    const itemsPerPage = 12;
+    const pageNumber = parseInt(page) || 1; // If page is not provided, default to page 1
+    const skipItems = (pageNumber - 1) * itemsPerPage;
 
     const query = {};
 
-    if (selectedGenre !== "all") {
-        query.genres = selectedGenre;
+    if (genre !== "all") {
+        query.genres = genre;
     }
-    if (selectedYear !== "all") {
-        const yearInt = parseInt(selectedYear)
+    if (year !== "all") {
+        const yearInt = parseInt(year)
         query.year = yearInt
     }
-    if (inputTitle !== "") {
-        query.title = { $regex: inputTitle, $options: "i" }
+    if (title !== "") {
+        query.title = { $regex: title, $options: "i" }
     }
-
-    console.log(query);
 
     try {
         const movies = await db
             .collection("movies")
             .find(query)
-            .limit(12)
+            .skip(skipItems)
+            .sort({ year: -1 })
+            .limit(itemsPerPage)
             .toArray();
+        
+        // Calculate the total count of movies that match the search criteria
+        const totalMoviesCount = await db.collection("movies").countDocuments(query);
+        // Calculate the total number of pages based on the total count and items per page
+        const totalPages = Math.ceil(totalMoviesCount / itemsPerPage);
 
-        res.status(200).json({ movies })
+        res.status(200).json({ movies, totalPages })
     } catch (error) {
         res.status(500).json({ error: "Could not complete request" })
     }
