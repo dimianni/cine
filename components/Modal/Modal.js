@@ -42,14 +42,14 @@ export default function Modal({ isOpen, setIsOpen, onClose }) {
                 <div className="sectionDivider w-full h-[1px] bg-white opacity-30 my-2"></div>
                 <nav className="actionlist">
                     <ul>
-                        <li className="hover:bg-grey-300 rounded-md">
-                            <Link href="profile" className="flex justify-start items-center p-2">
+                        <li className="hover:bg-grey-400 rounded-md">
+                            <Link href="/profile" className="flex justify-start items-center p-2">
                                 <User className="text-grey-300 w-4 h-4" />
                                 <p className="ml-2">Profile</p>
                             </Link>
                         </li>
-                        <li className="hover:bg-grey-300 rounded-md">
-                            <Link href="profile" className="flex justify-start items-center p-2">
+                        <li className="hover:bg-grey-400 rounded-md">
+                            <Link href="/liked" className="flex justify-start items-center p-2">
                                 <Heart className="text-grey-300 w-4 h-4" />
                                 <p className="ml-2">Saved movies</p>
                             </Link>
