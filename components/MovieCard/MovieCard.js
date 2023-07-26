@@ -26,12 +26,12 @@ export default function MovieCard({ movie }) {
     return (
         <article className="w-full">
             <div className="poster-wrapper relative w-full rounded-2xl p-1 border-4 border-hsla-0-0-100-0 hover:border-grey-300">
-                <Link href={`/movie/${movie._id}`}>
-                    <figure className="poster-img w-full h-[350px] xl:h-[450px] rounded-xl overflow-hidden relative">
+                <Link href={`/movie/${movie._id}`} className="w-full">
+                    <figure className="poster-img w-full h-[53vw] sm:h-[430px] md:h-[330px] lg:h-[330px] xl:h-[420px] rounded-xl overflow-hidden relative">
                         <div className="gradient absolute top-0 left-0 w-full h-full"></div>
                         <figcaption className="hidden">{movie.title}</figcaption>
                         {poster ? (
-                            <Image width={320} height={450} style={{ width: "100%", height: "100%", objectFit: "cover" }} src={poster} alt={movie.title} />
+                            <Image width={320} height={450} style={{ width: "100%", minHeight: "100%", height: "auto", objectFit: "cover" }} src={poster} alt={movie.title} />
                         ) : (
                             <p>Loading...</p>
                         )
