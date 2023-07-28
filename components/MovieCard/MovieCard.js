@@ -40,7 +40,7 @@ export default function MovieCard({ movie }) {
                 </Link>
                 <p className="absolute bottom-4 left-4 text-sm xl:text-base font-medium uppercase text-white opacity-80">{movie.title}</p>
 
-                {userInfo && <LikeButton id={movie._id} liked={userInfo.likedMovies.includes(movie._id)} />}
+                {userInfo && <div className="absolute right-3 top-4 w-6 h-6"><LikeButton id={movie._id} liked={userInfo.likedMovies.includes(movie._id)} /></div> }
             </div>
         </article>
     )
