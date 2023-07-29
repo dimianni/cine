@@ -34,15 +34,15 @@ export default function SearchFilters() {
 
     return (
         <section>
-            <div className='flex justify-between items-center mb-4'>
-                <div className="filters flex justify-between items-center">
-                    <div className="title flex flex-col mr-3">
-                        <label className='text-sm text-white mb-1' htmlFor="title">Filter by Name:</label>
-                        <input id='title' placeholder='Search...' className='bg-grey-400 text-white py-2 px-3 rounded-lg text-base' type="text" onChange={(e) => handleTitleChange(e)} value={inputTitle} />
+            <div className='flex flex-col md:flex-row justify-between items-end mb-4 px-2'>
+                <div className="filters flex flex-col w-full md:flex-row justify-between items-center md:items-start">
+                    <div className="title w-full flex flex-col mb-3 md:mb-0 md:mr-3">
+                        <label className='text-sm text-grey-300 mb-1' htmlFor="title">Filter by Name:</label>
+                        <input id='title' placeholder='Search...' className='bg-grey-400 text-white py-2 px-3 leading-5 rounded-lg text-base' type="text" onChange={(e) => handleTitleChange(e)} value={inputTitle} />
                     </div>
-                    <div className="genres flex flex-col mr-3">
-                        <label className='text-sm text-white mb-1' htmlFor="genre">Filter by Genre:</label>
-                        <select id="genre" value={selectedGenre} onChange={(e) => handleGenreChange(e)} className='bg-grey-400 text-white py-2 px-3 rounded-lg text-base'>
+                    <div className="genres w-full flex flex-col mb-3 md:mb-0 md:mr-3">
+                        <label className='text-sm text-grey-300 mb-1' htmlFor="genre">Filter by Genre:</label>
+                        <select id="genre" value={selectedGenre} onChange={(e) => handleGenreChange(e)} className='bg-grey-400 text-white py-2 px-3 leading-5 rounded-lg text-base'>
                             <option value="all">All</option>
                             {genres.map((genre) => (
                                 <option key={genre} value={genre}>
@@ -51,9 +51,9 @@ export default function SearchFilters() {
                             ))}
                         </select>
                     </div>
-                    <div className="years flex flex-col">
-                        <label className='text-sm text-white mb-1' htmlFor="year">Filter by Year:</label>
-                        <select id="year" value={selectedYear} onChange={(e) => handleYearChange(e)} className='bg-grey-400 text-white py-2 px-3 rounded-lg text-base'>
+                    <div className="years w-full flex flex-col mb-3 md:mb-0">
+                        <label className='text-sm text-grey-300 mb-1' htmlFor="year">Filter by Year:</label>
+                        <select id="year" value={selectedYear} onChange={(e) => handleYearChange(e)} className='bg-grey-400 text-white py-2 px-3 leading-5 rounded-lg text-base'>
                             <option value="all">All</option>
                             {years.map((year) => (
                                 <option key={year} value={year}>
@@ -64,7 +64,7 @@ export default function SearchFilters() {
                     </div>
                 </div>
 
-                <div className="btns flex">
+                <div className="btns w-full flex justify-between md:justify-end mt-4 md:mt-0">
                     <div className='mr-3'>
                         <Button color="green" onClick={handleSearch}>Search</Button>
                     </div>
