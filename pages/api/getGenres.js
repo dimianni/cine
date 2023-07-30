@@ -1,15 +1,17 @@
-import clientPromise from "@/lib/mongodb";
+/*
+    'api/getYears.js' and 'api/getGenres.js' can be used as endpoints to retrieve values for the filter.
+    However, since my db is not going to change, I will just put the json files generated into filterData folder and use them statically.
+*/
 
+import clientPromise from "@/lib/mongodb";
 import fs from 'fs';
 import path from 'path';
 
-
-
 // File path to save the genres
 const genresFilePath = path.resolve('./genres.json');
-
 // Check if the genres file exists
 const genresFileExists = fs.existsSync(genresFilePath);
+
 
 export default async function handler(req, res) {
 
