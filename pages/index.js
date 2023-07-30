@@ -1,8 +1,31 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import clientPromise from '../lib/mongodb'
 import { TopMovies, Hero } from '../components'
+import { useEffect } from 'react'
 
 export default function Home({ isConnected, movies }) {
+
+  async function getGenres() {
+    const response = await fetch('api/getGenres')
+    const { genres } = await response.json()
+    console.log(genres);
+  }
+
+  async function getYears(){
+    const response = await fetch('api/getYears')
+    const {years} = await response.json()
+    console.log(years);
+  }
+
+  useEffect(() => {
+
+    getGenres()
+    getYears()
+
+  }, [])
+
+
   return (
     <>
       <Head>
