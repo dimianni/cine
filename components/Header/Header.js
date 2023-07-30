@@ -36,7 +36,7 @@ export default function Header() {
         <header className="header sticky top-0 left-0 w-full bg-grey-600 z-[998] py-3 h-16">
             <div className="container h-full flex justify-between items-center">
                 <Link href="/">
-                    <h1 className="text-green text-2xl font-bold tracking-wider">cine</h1>
+                    <h1 className="text-green text-2xl font-bold w-52 tracking-wider">cine</h1>
                 </Link>
                 {user ? (
                     <div className="flex justify-center items-center">
