@@ -1,12 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import genres from '../../filterData/genres.json'
 import years from '../../filterData/years.json'
-import { useRouter } from 'next/router';
 
 
-export default function SearchFilters() {
+export default function SearchFilters({ setSearchedMovies }) {
 
-    const router = useRouter()
     const [selectedGenre, setSelectedGenre] = useState("all");
     const [selectedYear, setSelectedYear] = useState("all");
     const [inputTitle, setInputTitle] = useState("");
@@ -21,18 +19,35 @@ export default function SearchFilters() {
         setInputTitle(e.target.value)
     }
 
-    function handleClear(){
+    async function getMovies() {
+        // Clear out previous search
+        setSearchedMovies(null)
+
+        const response = await fetch('api/getSearchedMovies', {
+            method: "POST",
+            body: JSON.stringify({ selectedGenre, selectedYear, inputTitle }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const { movies } = await response.json()
+        setSearchedMovies(movies)
+    }
+
+    function clearfilters(){
         setSelectedGenre("all")
         setSelectedYear("all")
         setInputTitle("")
     }
 
-    function handleSearch() {
-        router.push(`/search?genre=${selectedGenre}&year=${selectedYear}&title=${inputTitle}&page=1`)
-    }
+    useEffect(() => {
+        getMovies()
+    }, [])
+
 
     return (
         <section>
+            {/* <h1>Search</h1> */}
             <div className='flex justify-between items-center mb-4'>
                 <div className="filters flex justify-between items-center">
                     <div className="title flex flex-col mr-3">
@@ -64,10 +79,10 @@ export default function SearchFilters() {
                 </div>
 
                 <div className="btns">
-                    <button className='bg-green rounded-lg text-grey-400 px-3 py-2' onClick={handleSearch}>
+                    <button className='bg-green rounded-lg text-grey-400 px-3 py-2' onClick={() => getMovies()}>
                         Search
                     </button>
-                    <button className='ml-3 bg-transparent rounded-lg border border-white px-3 py-2' onClick={handleClear}>Clear</button>
+                    <button className='ml-3 bg-transparent rounded-lg border border-white px-3 py-2' onClick={clearfilters}>Clear</button>
                 </div>
             </div>
         </section>
