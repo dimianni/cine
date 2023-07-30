@@ -4,13 +4,12 @@ import { useState, useEffect } from "react";
 import verifyImage from "@/utils/verifyImage";
 import LikeButton from "../LikeButton/LikeButton";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import useUserInfo from "@/hooks/useUserInfo";
 
 export default function MovieCard({ movie }) {
 
     const [poster, setPoster] = useState(null)
-    const user = useSelector(state => state.auth.user)
-    const [isLiked, setIsLiked] = useState(false)
+    const { userInfo } = useUserInfo()
 
     useEffect(() => {
         // Verifying if the poster exists
@@ -23,10 +22,6 @@ export default function MovieCard({ movie }) {
                 }
             })
     }, [])
-
-    useEffect(() => {
-        setIsLiked(user?.likedMovies.includes(movie._id))
-    }, [user])
 
     return (
         <article className="w-full">
@@ -45,9 +40,7 @@ export default function MovieCard({ movie }) {
                 </Link>
                 <p className="absolute bottom-4 left-4 text-sm xl:text-base font-medium uppercase text-white opacity-80">{movie.title}</p>
 
-                <div className="absolute right-3 top-4 w-7 h-7">
-                    <LikeButton id={movie._id} liked={isLiked} />
-                </div>
+                {userInfo && <div className="absolute right-3 top-4 w-7 h-7"><LikeButton id={movie._id} liked={userInfo.likedMovies.includes(movie._id)} /></div> }
             </div>
         </article>
     )

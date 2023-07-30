@@ -8,6 +8,7 @@ export default function Modal({ isOpen, setIsOpen, onClose }) {
 
     const { userInfo, status } = useUserInfo();
 
+
     function handleModalClose(){
         setIsOpen(true)
         onClose()

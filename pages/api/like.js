@@ -36,8 +36,9 @@ export default async function handle(req, res) {
                 user.likedMovies.splice(index, 1);
             }
             const updatedUser = await user.save();
-
+            // console.log('User updated (delete):', updatedUser);
             res.json({ result: null, updatedUser })
+
         } catch (error) {
             console.error('Error updating user (delete):', error);
             res.json({error})
@@ -49,9 +50,7 @@ export default async function handle(req, res) {
         const like = await Like.create({ author: userId, movie: movieId })
 
         try {
-            // throw new Error("Smth")
             user.likedMovies.push(movieId);
-
             const updatedUser = await user.save();
             // console.log('User updated (add):', updatedUser);
             res.json({ result: like, updatedUser })

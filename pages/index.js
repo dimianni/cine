@@ -10,7 +10,7 @@ export default function Home({ isConnected, movies }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className='relative'>
+      <main>
         <Hero />
         <TopMovies movies={movies} />
       </main>

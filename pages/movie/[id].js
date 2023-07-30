@@ -16,13 +16,12 @@ export default function Movie({ movie }) {
 
     const [poster, setPoster] = useState(null)
     const user = useSelector(state => state.auth.user)
-    const [isLiked, setIsLiked] = useState(false)
 
     const onlyNames = (text) => text.split("(")[0]
 
     useEffect(() => {
-        setIsLiked(user?.likedMovies.includes(movie._id))
-    }, [user])
+        console.log(movie);
+    }, [movie])
 
     useEffect(() => {
         // Verifying if the poster exists
@@ -149,13 +148,12 @@ export default function Movie({ movie }) {
 
                         <div className="directors flex items-start justify-start py-2 border-t-[1px] border-grey-300">
                             <p>Directors:&nbsp;&nbsp;</p>
-                            <ul className="flex flex-wrap">
+                            <ul className="flex">
                                 {
-                                    movie.directors ? (movie.directors.map((director, i) => {
+                                    movie.directors ? (movie.directors.map(director => {
                                         return (
-                                            <li key={director} className="flex">
-                                                <p>{onlyNames(director)}</p>
-                                                {i !== movie.directors.length - 1 && <span>,&nbsp;</span>}
+                                            <li key={director}>
+                                                <p>{director}</p>
                                             </li>
                                         )
                                     })) : (
@@ -209,9 +207,7 @@ export default function Movie({ movie }) {
                                     </p>
                                 }
                             </div>
-                            <div className="text-green w-8 h-8">
-                                <LikeButton id={movie._id} liked={isLiked} />
-                            </div>
+                            {user && <div className="text-green w-8 h-8"><LikeButton id={movie._id} liked={user.likedMovies.includes(movie._id)} /></div>}
                         </div>
                     </div>
                 </div>
@@ -248,7 +244,7 @@ export const getServerSideProps = async (context) => {
             foundMovie = {}
         }
 
-        // console.log(foundMovie);
+        console.log(foundMovie);
 
         return {
             props: {
