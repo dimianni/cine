@@ -25,8 +25,6 @@ export default async function handler(req, res) {
         query.title = { $regex: title, $options: "i" }
     }
 
-    // USE $search
-    // https://www.mongodb.com/developer/products/atlas/atlas-search-vs-regex/?utm_campaign=search_activation_1&utm_source=email&utm_medium=iterable
     try {
         const movies = await db
             .collection("movies")
