@@ -22,7 +22,7 @@ export default function MovieCard({ movie }) {
                     setPoster(noImg)
                 }
             })
-    }, [])
+    }, [movie])
 
     useEffect(() => {
         setIsLiked(user?.likedMovies.includes(movie._id))
