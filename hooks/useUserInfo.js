@@ -14,6 +14,7 @@ export default function useUserInfo() {
 
     function getUserInfo() {
         if (sessionStatus === 'loading') {
+            setStatus('loading');
             return;
         }
         if (sessionStatus === 'unauthenticated') {
