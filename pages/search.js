@@ -1,5 +1,5 @@
-import MovieContainer from "@/Layout/MovieContainer";
-import { MovieCard, SearchFilters } from "@/components";
+import MovieCard from "@/components/MovieCard/MovieCard";
+import SearchFilters from "@/components/SearchFilters/SearchFilters";
 import Pagination from "@/utils/Pagination";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -44,25 +44,22 @@ export default function Search(){
                 <SearchFilters setSearchedMovies={setSearchedMovies} />
 
                 <section>
-                    <div className="container">
-                        {searchedMovies ? (
-                            <div>
-                                <MovieContainer>
-                                    {
-                                        searchedMovies?.map(mov => {
-                                            return (
-                                                <MovieCard movie={mov} />
-                                            )
-                                        })
-                                    }
-                                </MovieContainer>
-                            </div>
-                        ) : (
-                            <p>Loading...</p>
-                        )}
+                    {searchedMovies ? (
+                        <ul className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                            {
+                                searchedMovies?.map(mov => {
+                                    return (
+                                        <MovieCard movie={mov} />
+                                    )
+                                })
+                            }
+                        </ul>
+                    ) : (
+                        <p>Loading...</p>
+                    )}
 
-                        {pagesCount > 1 && <Pagination numOfPages={pagesCount} currentPage={parseInt(page)} genre={genre} year={year} title={title} />}
-                    </div>
+                    { pagesCount > 1 && <Pagination numOfPages={pagesCount} currentPage={parseInt(page)} genre={genre} year={year} title={title} />}
+                    
                 </section>
             </main>
         </div>

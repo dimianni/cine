@@ -4,9 +4,6 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./Layout/**/*.{js,ts,jsx,tsx,mdx}",
-    "./UI/**/*.{js,ts,jsx,tsx,mdx}",
-    "./utils/**/*.{js,ts,jsx,tsx,mdx}",
 
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
@@ -33,8 +30,7 @@ module.exports = {
           300: '#797d84',
           400: '#323843',
           500: '#272c34',
-          600: '#0b0c0f',
-          900: '#040405'
+          900: '#0b0c0f'
         },
         white: '#f6f7f8',
         hsla: {

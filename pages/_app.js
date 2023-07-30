@@ -1,7 +1,7 @@
 import { SessionProvider } from "next-auth/react"
 import '@/styles/globals.css'
 import { Rubik } from 'next/font/google'
-import Layout from "@/Layout/Layout"
+import { Layout } from "@/components"
 import { Provider } from "react-redux"
 import store from "@/redux/store"
 

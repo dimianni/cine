@@ -19,18 +19,16 @@ export default function Pagination({ numOfPages, currentPage, genre, year, title
     }
 
     return (
-        <div className="mt-12 mb-14">
-            <ul className="flex flex-wrap justify-center items-center">
-                {
-                    pages.map((page, i) => {
-                        return (
-                            <li key={i} className={`text-base rounded-lg py-2 px-3 mx-1 border border-white ${currentPage === page ? "!text-green !border-green" : ""}`}>
-                                <Link href={`/search?genre=${genre}&year=${year}&title=${title}&page=${page}`}>{page}</Link>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
-        </div>
+        <ul className="flex flex-wrap justify-center items-center">
+            {
+                pages.map((page, i) => {
+                    return (
+                        <li key={i} className={`mx-1 ${currentPage === page ? "text-blue-500" : ""}`}>
+                            <Link href={`/search?genre=${genre}&year=${year}&title=${title}&page=${page}`}>{page}</Link>
+                        </li>
+                    )
+                })
+            }
+        </ul>
     )
 }   

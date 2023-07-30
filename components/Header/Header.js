@@ -6,7 +6,6 @@ import Modal from "../Modal/Modal";
 import { useEffect, useState } from "react";
 import { Heart } from "react-feather";
 import { useSelector } from "react-redux";
-import { Button } from "@/UI";
 
 
 export default function Header() {
@@ -33,7 +32,7 @@ export default function Header() {
     }, [userInfo])
 
     return (
-        <header className="header sticky top-0 left-0 w-full bg-grey-600 z-[998] py-3 h-16">
+        <header className="header sticky top-0 left-0 w-full bg-grey-900 z-[998] py-3 h-16">
             <div className="container h-full flex justify-between items-center">
                 <Link href="/">
                     <h1 className="text-green text-2xl font-bold w-52 tracking-wider">cine</h1>
@@ -51,7 +50,9 @@ export default function Header() {
                         </div>
                     </div>
                 ) : (
-                        <Button color="grey" onClick={() => signIn()}>Sign in</Button>
+                    <p>
+                        <button onClick={() => signIn()}>Sign in</button>
+                    </p>
                 )}
             </div>
             <Modal isOpen={isOpen} setIsOpen={setIsOpen} onClose={handleModalClose} />

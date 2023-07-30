@@ -2,7 +2,6 @@ import { useState } from 'react';
 import genres from '../../filterData/genres.json'
 import years from '../../filterData/years.json'
 import { useRouter } from 'next/router';
-import { Button } from '@/UI';
 
 
 export default function SearchFilters() {
@@ -37,12 +36,12 @@ export default function SearchFilters() {
             <div className='flex justify-between items-center mb-4'>
                 <div className="filters flex justify-between items-center">
                     <div className="title flex flex-col mr-3">
-                        <label className='text-sm text-white mb-1' htmlFor="title">Filter by Name:</label>
-                        <input id='title' placeholder='Search...' className='bg-grey-400 text-white py-2 px-3 rounded-lg text-base' type="text" onChange={(e) => handleTitleChange(e)} value={inputTitle} />
+                        <label htmlFor="title">Filter by Genre:</label>
+                        <input id='title' className='text-black' type="text" onChange={(e) => handleTitleChange(e)} value={inputTitle} />
                     </div>
                     <div className="genres flex flex-col mr-3">
-                        <label className='text-sm text-white mb-1' htmlFor="genre">Filter by Genre:</label>
-                        <select id="genre" value={selectedGenre} onChange={(e) => handleGenreChange(e)} className='bg-grey-400 text-white py-2 px-3 rounded-lg text-base'>
+                        <label htmlFor="genre">Filter by Genre:</label>
+                        <select id="genre" value={selectedGenre} onChange={(e) => handleGenreChange(e)} className='bg-grey-400 text-white'>
                             <option value="all">All</option>
                             {genres.map((genre) => (
                                 <option key={genre} value={genre}>
@@ -52,8 +51,8 @@ export default function SearchFilters() {
                         </select>
                     </div>
                     <div className="years flex flex-col">
-                        <label className='text-sm text-white mb-1' htmlFor="year">Filter by Year:</label>
-                        <select id="year" value={selectedYear} onChange={(e) => handleYearChange(e)} className='bg-grey-400 text-white py-2 px-3 rounded-lg text-base'>
+                        <label htmlFor="year">Filter by Year:</label>
+                        <select id="year" value={selectedYear} onChange={(e) => handleYearChange(e)} className='bg-grey-400 text-white'>
                             <option value="all">All</option>
                             {years.map((year) => (
                                 <option key={year} value={year}>
@@ -64,13 +63,11 @@ export default function SearchFilters() {
                     </div>
                 </div>
 
-                <div className="btns flex">
-                    <div className='mr-3'>
-                        <Button color="green" onClick={handleSearch}>Search</Button>
-                    </div>
-                    <div>
-                        <Button color="transparent" onClick={handleClear}>Clear</Button>
-                    </div>
+                <div className="btns">
+                    <button className='bg-green rounded-lg text-grey-400 px-3 py-2' onClick={handleSearch}>
+                        Search
+                    </button>
+                    <button className='ml-3 bg-transparent rounded-lg border border-white px-3 py-2' onClick={handleClear}>Clear</button>
                 </div>
             </div>
         </section>
