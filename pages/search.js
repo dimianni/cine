@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import nothingFound from '../public/void_illustration.svg';
-import { Spinner } from "@/UI";
+// import notFound from '../public/brokenrobot_illustration.svg'
 
 
 export default function Search() {
@@ -42,19 +42,18 @@ export default function Search() {
         }
     }, [genre, year, title, page])
 
-    let movieList;
+    let movieList = <p>Loading...</p>
 
     if (!searchedMovies) {
         movieList = (
             <div className="flex justify-center items-center">
-                <Spinner />
+                <p>Loading...</p>
             </div>
         )
     } else if (searchedMovies?.length === 0) {
         movieList = (
-            <div className="flex flex-col justify-center items-center min-h-screen">
+            <div className="flex justify-center items-center min-h-screen">
                 <Image src={nothingFound} alt="nothing found" width="220" />
-                <p className="text-5xl font-semibold text-center my-4">No results here</p>
             </div>
         )
     } else {

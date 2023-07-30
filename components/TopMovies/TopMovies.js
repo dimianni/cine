@@ -1,8 +1,7 @@
 import MovieContainer from "@/Layout/MovieContainer";
 import MovieCard from "../MovieCard/MovieCard";
-import { Spinner } from "@/UI";
 
-export default function TopMovies({ movies }) {
+export default function TopMovies({movies}) {
     return (
         <section>
             <div className="container">
@@ -14,19 +13,13 @@ export default function TopMovies({ movies }) {
                 </div>
                 <div>
                     <MovieContainer>
-                        {
-                            movies ? (movies.map(movie => {
-                                return (
-                                    <li className="w-full" key={movie._id}>
-                                        <MovieCard movie={movie} />
-                                    </li>
-                                )
-                            })) : (
-                                <div>
-                                    <Spinner />
-                                </div>
+                        {movies?.map(movie => {
+                            return (
+                                <li className="w-full" key={movie._id}>
+                                    <MovieCard movie={movie} />
+                                </li>
                             )
-                        }
+                        })}
                     </MovieContainer>
                 </div>
             </div>
