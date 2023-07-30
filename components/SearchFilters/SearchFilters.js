@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import genres from '../../filterData/genres.json'
 import years from '../../filterData/years.json'
 import { useRouter } from 'next/router';
@@ -21,10 +21,6 @@ export default function SearchFilters() {
         setSelectedYear("all")
         setInputTitle("")
     }
-
-    useEffect(() => {
-        setSelectedGenre(router.query.genre)
-    }, [router])
 
     function handleSearch() {
         router.push(`/search?genre=${selectedGenre}&year=${selectedYear}&title=${inputTitle}&page=1`)
