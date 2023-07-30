@@ -6,12 +6,12 @@ export default function Heading({ num, size, color, children }) {
 
     const headingClasses = useMemo(() => {
         return {
-            "uppercase text-xs lg:text-sm font-medium text-green my-2": size === "sm" && color === "green",
-            "uppercase text-xs lg:text-sm font-medium text-white my-2": size === "sm" && color === "white",
-            "text-xl font-medium text-green my-3": size === "md" && color === "green",
-            "text-xl font-medium text-white my-3": size === "md" && color === "white",
-            "text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-green my-4": size === "lg" && color === "green",
-            "text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-white my-4": size === "lg" && color === "white"
+            "uppercase text-xs lg:text-sm font-medium text-green": size === "sm" && color === "green",
+            "uppercase text-xs lg:text-sm font-medium text-white": size === "sm" && color === "white",
+            "text-xl font-medium text-green": size === "md" && color === "green",
+            "text-xl font-medium text-white": size === "md" && color === "white",
+            "text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-green": size === "lg" && color === "green",
+            "text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold text-white": size === "lg" && color === "white"
         }
     })
 
