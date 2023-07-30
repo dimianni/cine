@@ -14,7 +14,7 @@ export default function Liked() {
             return;
         }
 
-        const response = await fetch('api/getLikedMovies', {
+        const response = await fetch('api/getMovies', {
             method: "POST",
             body: JSON.stringify({ arr }),
             headers: {
