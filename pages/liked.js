@@ -1,4 +1,5 @@
 import MovieContainer from "@/Layout/MovieContainer";
+import { Spinner } from "@/UI";
 import { MovieCard } from "@/components";
 import Head from "next/head"
 import { useEffect, useState } from "react";
@@ -31,6 +32,33 @@ export default function Liked() {
         getFavMovies(user?.likedMovies)
     }, [user])
 
+    let favMoviesList;
+
+    if (!favMovies){
+        favMoviesList = (
+            <div className=" w-full flex justify-center items-center">
+                <Spinner />
+            </div>
+        )
+    } else if (favMovies?.length === 0){
+        favMoviesList = (
+            <p>There are no movies in your collection :(</p>
+        )
+    } else {
+        favMoviesList = (
+            <MovieContainer>
+                {
+                    favMovies?.map(movie => {
+                        return (
+                            <li>
+                                <MovieCard movie={movie} />
+                            </li>
+                        )
+                    })
+                }
+            </MovieContainer>
+        )
+    }
 
     return (
         <div className="container">
@@ -47,20 +75,7 @@ export default function Liked() {
                             </div>
                         </div>
                         <div>
-                            <MovieContainer>
-                                {favMovies?.length === 0 ? (
-                                    <p>There are no movies in your collection :(</p>
-                                ) : (
-                                    favMovies?.map(movie => {
-                                        return (
-                                            <li>
-                                                <MovieCard movie={movie} />
-                                            </li>
-                                        )
-                                    })
-                                )
-                                }
-                            </MovieContainer>
+                            {favMoviesList}
                         </div>
                     </div>
                 </section>
