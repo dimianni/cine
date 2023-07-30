@@ -31,7 +31,12 @@
 @media only screen and (min-width: 360px) {
     /* Background image source: https://unsplash.com/photos/wMkaMXTJjlQ */
     .hero-bg {
-        background-image: radial-gradient(circle, rgba(0,0,0,0.8645658947172619) 0%, rgba(0,0,0,0.6824930655856092) 35%, rgba(0,0,0,0.8253502084427521) 100%),
+        background-image: radial-gradient(
+                circle,
+                rgba(0, 0, 0, 0.8645658947172619) 0%,
+                rgba(0, 0, 0, 0.6824930655856092) 35%,
+                rgba(0, 0, 0, 0.8253502084427521) 100%
+            ),
             url("../public/hero-bg-mobile.jpg");
     }
 }
@@ -39,9 +44,22 @@
 @media only screen and (min-width: 1024px) {
     /* Background image source: https://unsplash.com/photos/BQTHOGNHo08 */
     .hero-bg {
-        background-image: radial-gradient(circle, rgba(0,0,0,0.8645658947172619) 0%, rgba(0,0,0,0.6824930655856092) 35%, rgba(0,0,0,0.8253502084427521) 100%),
+        background-image: radial-gradient(
+                circle,
+                rgba(0, 0, 0, 0.8645658947172619) 0%,
+                rgba(0, 0, 0, 0.6824930655856092) 35%,
+                rgba(0, 0, 0, 0.8253502084427521) 100%
+            ),
             url("../public/hero-bg.jpg");
     }
 }
 
-
+.login-bg {
+    background-image: radial-gradient(
+            circle,
+            rgba(0, 0, 0, 0.8645658947172619) 0%,
+            rgba(0, 0, 0, 0.6824930655856092) 35%,
+            rgba(0, 0, 0, 0.8253502084427521) 100%
+        ),
+        url("../public/cine-login2.jpg");
+}
