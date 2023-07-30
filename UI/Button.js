@@ -7,7 +7,7 @@ export default function Button({color, disabled, onClick, children}) {
         return {
             "bg-green text-grey-400 border border-green": color === "green" && !disabled,
             "bg-grey-400 text-green border border-grey-400": color === "grey" && !disabled,
-            "bg-transparent text-white border border-grey-300": color === "transparent" && !disabled,
+            "bg-transparent text-white border border-white": color === "transparent" && !disabled,
             "bg-grey-400 text-grey-900 cursor-not-allowed": disabled
         }
     })

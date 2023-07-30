@@ -12,39 +12,25 @@ import { Button } from "@/UI";
 export default function Header() {
 
     const { userInfo, status } = useUserInfo();
+    // console.log(userInfo?.likedMovies);
+
     const user = useSelector(state => state.auth.user)
+    // console.log(user);
 
     const [isOpen, setIsOpen] = useState(false);
     const [countLikedMovies, setCountLikedMovies] = useState(null);
 
-    const handleModalOpen = () => setIsOpen(true);
-    const handleModalClose = () => setIsOpen(false);
+    const handleModalOpen = () => {
+        setIsOpen(true);
+    };
+
+    const handleModalClose = () => {
+        setIsOpen(false);
+    };
 
     useEffect(() => {
         setCountLikedMovies(userInfo?.likedMovies.length)
     }, [userInfo])
-
-    let userData;
-
-    if (status === "loading") {
-        userData = <p>Loading...</p>
-    } else if (status === "authenticated") {
-        userData = (
-            <div className="flex justify-center items-center">
-                <Link href="/liked" className="w-7 h-7 relative flex justify-center items-end">
-                    <div className="absolute top-0 right-0 translate-x-1/3 -translate-y-1/3 w-4 h-4 rounded-full bg-green flex justify-center items-center">
-                        <span className="text-xs text-grey-900">{user.likedMovies.length}</span>
-                    </div>
-                    <Heart className="w-6 h-6" />
-                </Link>
-                <div onClick={() => handleModalOpen()} className="rounded-full overflow-hidden w-8 h-8 ml-4 cursor-pointer">
-                    <Image width="32" height="32" alt="avatar" src={user.image} style={{ "width": "100%", "height": "auto", "objectFit": "cover" }} />
-                </div>
-            </div>
-        )
-    } else {
-        userData = <Button color="grey" onClick={() => signIn()}>Sign in</Button>
-    }
 
     return (
         <header className="header sticky top-0 left-0 w-full bg-grey-600 z-[998] py-3 h-16">
@@ -56,8 +42,23 @@ export default function Header() {
                     <Link href="/search?genre=all&year=all&title=&page=1" className="mt-1 mr-4">
                         <Search className="w-6 h-6" />
                     </Link>
-                    {userData}
+                    {user ? (
+                        <div className="flex justify-center items-center">
+                            <Link href="liked" className="w-7 h-7 relative flex justify-center items-end">
+                                <div className="absolute top-0 right-0 translate-x-1/3 -translate-y-1/3 w-4 h-4 rounded-full bg-green flex justify-center items-center">
+                                    <span className="text-xs text-grey-900">{user.likedMovies.length}</span>
+                                </div>
+                                <Heart className="w-6 h-6" />
+                            </Link>
+                            <div onClick={() => handleModalOpen()} className="rounded-full overflow-hidden w-8 h-8 ml-4 cursor-pointer">
+                                <Image width="32" height="32" src={user.image} style={{ "width": "100%", "height": "auto", "objectFit": "cover" }} />
+                            </div>
+                        </div>
+                    ) : (
+                        <Button color="grey" onClick={() => signIn()}>Sign in</Button>
+                    )}
                 </div>
+
             </div>
             <Modal isOpen={isOpen} setIsOpen={setIsOpen} onClose={handleModalClose} />
         </header>

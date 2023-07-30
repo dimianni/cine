@@ -74,19 +74,18 @@ export default function Search() {
     }
 
     return (
-        <main>
-            <div className="container">
-
+        <div className="container">
+            <main>
                 <SearchFilters setSearchedMovies={setSearchedMovies} />
 
                 <section>
-                    <div>
+                    <div className="container">
                         {movieList}
 
                         {pagesCount > 1 && <Pagination numOfPages={pagesCount} currentPage={parseInt(page)} genre={genre} year={year} title={title} />}
                     </div>
                 </section>
-            </div>
-        </main>
+            </main>
+        </div>
     )
 }
