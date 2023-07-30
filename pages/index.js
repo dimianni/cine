@@ -12,16 +12,9 @@ export default function Home({ isConnected, movies }) {
     console.log(genres);
   }
 
-  async function getYears(){
-    const response = await fetch('api/getYears')
-    const {years} = await response.json()
-    console.log(years);
-  }
-
   useEffect(() => {
 
     getGenres()
-    getYears()
 
   }, [])
 
