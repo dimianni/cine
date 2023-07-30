@@ -24,7 +24,7 @@ export default function Liked() {
             }
         })
         let { movies } = await response.json()
-        console.log(movies);
+        // console.log(movies);
         setFavMovies(movies)
     }
 
