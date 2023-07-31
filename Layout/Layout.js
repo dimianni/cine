@@ -7,10 +7,6 @@ export default function Layout({children}){
 
     const router = useRouter()
 
-    useEffect(() => {
-        console.log(router);
-    }, [])
-
     return (
         <div className="relative">
             {router.pathname !== "/login" && <Header />} 

@@ -20,6 +20,7 @@ export default function LikeButton({ id, liked:likedDefault}) {
         setLiked(likedDefault);
     }, [likedDefault]);
 
+
     async function toggleLike() {
 
         if(!user){
@@ -34,11 +35,11 @@ export default function LikeButton({ id, liked:likedDefault}) {
             dispatch(setPopup({ type: "ERROR", isOpen: true }))
             setLiked(false)
         } 
-        if (!response.data.result){
-            setLiked(false)
-        }
         if (response.data.updatedUser) {
             dispatch(updateUser(response.data.updatedUser))
+        }
+        if (!response.data.result) {
+            setLiked(false)
         }
     }
 

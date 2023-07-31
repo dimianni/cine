@@ -26,7 +26,7 @@ export default function MovieCard({ movie }) {
 
     useEffect(() => {
         setIsLiked(user?.likedMovies.includes(movie._id))
-    }, [user])
+    }, [user, movie])
 
     return (
         <article className="w-full">
