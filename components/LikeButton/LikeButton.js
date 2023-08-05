@@ -20,7 +20,6 @@ export default function LikeButton({ id, liked:likedDefault}) {
         setLiked(likedDefault);
     }, [likedDefault]);
 
-
     async function toggleLike() {
 
         if(!user){
@@ -29,16 +28,24 @@ export default function LikeButton({ id, liked:likedDefault}) {
         }
 
         setLiked(true)
-        const response = await axios.post('/api/like', {id})
-        
-        if (response.data.error) {
+
+        const response = await fetch('/api/like', {
+            method: "POST",
+            body: JSON.stringify({ id }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const data = await response.json()
+
+        if (data.error) {
             dispatch(setPopup({ type: "ERROR", isOpen: true }))
             setLiked(false)
         } 
-        if (response.data.updatedUser) {
-            dispatch(updateUser(response.data.updatedUser))
+        if (data.updatedUser) {
+            dispatch(updateUser(data.updatedUser))
         }
-        if (!response.data.result) {
+        if (!data.result) {
             setLiked(false)
         }
     }
