@@ -1,6 +1,5 @@
 import { updateUser } from "@/redux/actions/authActions";
 import { setPopup } from "@/redux/actions/popupActions";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Heart } from "react-feather";
 import { useDispatch, useSelector } from "react-redux";
