@@ -10,6 +10,7 @@ import Link from "next/link";
 import { LikeButton } from "@/components";
 import { useSelector } from "react-redux";
 import noImg from "../../public/no_img.jpg"
+import Head from "next/head";
 
 
 export default function Movie({ movie }) {
@@ -220,11 +221,20 @@ export default function Movie({ movie }) {
     }
 
     return (
-        <main className="min-h-screen">
-            <div className="container">
-                {movieInfo}
-            </div>
-        </main>
+        <>
+            <Head>
+                <title>Cine | {movie.title}</title>
+                <meta name="description" content={movie.plot} />
+                <meta property="og:title" content={movie.title} />
+                <meta property="og:site_name" content={movie.title} />
+                <meta property="og:description" content={movie.plot} />
+            </Head>
+            <main className="min-h-screen">
+                <div className="container">
+                    {movieInfo}
+                </div>
+            </main>
+        </>
     )
 }
 

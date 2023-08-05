@@ -6,8 +6,15 @@ export default function Home({ isConnected, movies }) {
   return (
     <>
       <Head>
-        <title>Cine</title>
+        <title>Cine | Your movie collection</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content="Search and save movies you'd like to watch!" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Cine | Your movie collection" />
+        <meta property="og:site_name" content="Cine | Your movie collection" />
+        <meta property="og:image" content="/cine.png" />
+        <meta property="og:description"
+          content="Search and save movies you'd like to watch!" />
       </Head>
 
       <main className='relative'>
