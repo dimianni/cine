@@ -1,16 +1,23 @@
-import useUserInfo from "@/hooks/useUserInfo";
 import { signOut } from "next-auth/react"
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { X, User, Heart } from "react-feather";
+import { useSelector } from "react-redux";
 
 export default function Modal({ isOpen, setIsOpen, onClose }) {
 
-    const { userInfo, status } = useUserInfo();
+    const userInfo = useSelector(state => state.auth.user)
+    const router = useRouter()
 
     function handleModalClose(){
         setIsOpen(true)
         onClose()
+    }
+
+    function handleSignOut(){
+        signOut()
+        router.push('/')
     }
 
     return (
@@ -52,7 +59,7 @@ export default function Modal({ isOpen, setIsOpen, onClose }) {
                 <div className="sectionDivider w-full h-[1px] bg-white opacity-30 my-2"></div>
                 <div className="logout">
                     <p className="p-2">
-                        <button onClick={() => signOut()}>Sign Out</button>
+                        <button onClick={handleSignOut}>Sign Out</button>
                     </p>
                 </div>
             </div>

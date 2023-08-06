@@ -4,6 +4,7 @@ import { Rubik } from 'next/font/google'
 import Layout from "@/Layout/Layout"
 import { Provider } from "react-redux"
 import store from "@/redux/store"
+import UserInfo from "@/Layout/UserInfo"
 
 
 const rubik = Rubik({
@@ -15,11 +16,13 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
   return (
     <Provider store={store}>
       <SessionProvider session={session}>
-        <div className={rubik.className}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </div>
+        <UserInfo>
+          <div className={rubik.className}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </div>
+        </UserInfo>
       </SessionProvider>
     </Provider>
   )

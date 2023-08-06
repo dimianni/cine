@@ -1,4 +1,3 @@
-import useUserInfo from "@/hooks/useUserInfo";
 import { signIn } from "next-auth/react"
 import Image from "next/image";
 import Link from "next/link";
@@ -11,8 +10,9 @@ import { Button } from "@/UI";
 
 export default function Header() {
 
-    const { userInfo, status } = useUserInfo();
+
     const user = useSelector(state => state.auth.user)
+    const status = useSelector(state => state.auth.status)
 
     const [isOpen, setIsOpen] = useState(false);
     const [countLikedMovies, setCountLikedMovies] = useState(null);
@@ -21,8 +21,8 @@ export default function Header() {
     const handleModalClose = () => setIsOpen(false);
 
     useEffect(() => {
-        setCountLikedMovies(userInfo?.likedMovies.length)
-    }, [userInfo])
+        setCountLikedMovies(user?.likedMovies.length)
+    }, [user])
 
     let userData;
 

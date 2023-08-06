@@ -1,16 +1,16 @@
 import { Heading, Spinner } from "@/UI"
-import useUserInfo from "@/hooks/useUserInfo"
 import { getProviders, signIn } from "next-auth/react"
 import { useRouter } from "next/router"
 import Google from "../public/google-icon.svg"
-// import Cine from "../public/cine-login.jpg"
 import Image from "next/image"
 import Link from "next/link"
+import { useSelector } from "react-redux"
 
 
 export default function LoginPage({ providers }) {
 
-    const { userInfo, status } = useUserInfo()
+    const userInfo = useSelector(state => state.auth.user)
+    const status = useSelector(state => state.auth.state)
     const router = useRouter()
 
     if (status === "loading") {
@@ -42,7 +42,7 @@ export default function LoginPage({ providers }) {
                             {
                                 Object.values(providers).map(provider => {
                                     return (
-                                        <button className="flex items-center bg-white py-3 px-16 rounded-lg" onClick={async () => { await signIn(provider.id) }}>
+                                        <button key={provider.id} className="flex items-center bg-white py-3 px-16 rounded-lg" onClick={async () => { await signIn(provider.id) }}>
                                             <Image src={Google} alt="Google" width="42" height="42" />
                                             <p className="text-xl text-grey-300 ml-2">{provider.name}</p>
                                         </button>
