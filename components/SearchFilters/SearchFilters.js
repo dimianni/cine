@@ -30,6 +30,22 @@ export default function SearchFilters() {
         router.push(`/search?genre=${selectedGenre}&year=${selectedYear}&title=${inputTitle}&page=1`)
     }
 
+    function handleEnterKeyPress(e){
+        if(e.key === "Enter"){
+            router.push(`/search?genre=${selectedGenre}&year=${selectedYear}&title=${inputTitle}&page=1`)
+        }
+    }
+
+    useEffect(() => {
+        // Attach the global keydown event listener when the component mounts
+        document.addEventListener('keydown', handleEnterKeyPress);
+
+        // Detach the global keydown event listener when the component unmounts
+        return () => {
+            document.removeEventListener('keydown', handleEnterKeyPress);
+        };
+    }, [selectedGenre, selectedYear, inputTitle]);
+
     return (
         <section>
             <div className='flex flex-col md:flex-row justify-between items-end mb-4 px-2'>
